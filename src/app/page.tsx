@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/elements";
 import {
   Card,
@@ -10,15 +12,29 @@ import { Input } from "@/components/elements";
 import { Text } from "@/components/atoms";
 import { Link } from "@/components/atoms";
 import Hero from "@/components/global/Hero";
+import MediaRowSlider from "@/components/landing/MediaRowSlider";
+import { useHomeContent } from "@/hooks/useHomeContent";
 
 export default function Home() {
+  const { featured, top10, onlyOnNetflix, popular, genres, isLoading } =
+    useHomeContent();
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <Hero />
 
-      <div className="max-w-6xl mx-auto space-y-12 p-8">
+      <div className=" mx-auto space-y-12 p-8">
+        <MediaRowSlider title="Top 10 Today" data={top10.movies ?? []} />
+        <MediaRowSlider
+          title="Only on Netflix"
+          data={onlyOnNetflix.movies ?? []}
+        />
+        <MediaRowSlider title="Popular" data={popular.data ?? []} />
+        <MediaRowSlider title="Action" data={genres.action ?? []} />
+        <MediaRowSlider title="Comedy" data={genres.comedy ?? []} />
+
         {/* Header */}
+
         <header className="text-center space-y-4">
           <Text as="h1" size="3xl" variant="netflix" className="mb-4">
             CineNext

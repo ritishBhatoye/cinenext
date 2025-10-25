@@ -51,3 +51,7 @@ interface TVShowProps {
   popularity: number;
   genre_ids: number[];
 }
+type FilterType = {
+  id: number;
+  title: string;
+};
