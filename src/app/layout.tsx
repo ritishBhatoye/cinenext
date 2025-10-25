@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/global/Navbar";
+import NavbarWrapper from "@/components/global/NavbarWrapper";
 import ReduxProvider from "@/providers/ReduxProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +13,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -28,12 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-11/12 mx-auto`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} antialiased `}
       >
-        <ReduxProvider>
-          <Navbar />
-          {children}
-        </ReduxProvider>
+        <AuthProvider>
+          <ReduxProvider>
+            <NavbarWrapper />
+            {children}
+          </ReduxProvider>
+        </AuthProvider>
       </body>
     </html>
   );
