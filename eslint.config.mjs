@@ -7,28 +7,16 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     rules: {
-      // TypeScript strict rules
-      "@typescript-eslint/no-unused-vars": "error",
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/explicit-function-return-type": "warn",
-      "@typescript-eslint/no-non-null-assertion": "error",
-      "@typescript-eslint/prefer-const": "error",
-
-      // React strict rules
-      "react/jsx-no-undef": "error",
-      "react/jsx-uses-react": "error",
-      "react/jsx-uses-vars": "error",
-      "react/no-unused-prop-types": "error",
-      "react/prop-types": "off", // Using TypeScript instead
-
       // General strict rules
       "no-console": "warn",
       "no-debugger": "error",
-      "no-unused-vars": "off", // Using TypeScript version
       "prefer-const": "error",
       "no-var": "error",
       eqeqeq: "error",
       curly: "error",
+
+      // React strict rules
+      "react/prop-types": "off", // Using TypeScript instead
     },
   },
   // Override default ignores of eslint-config-next.

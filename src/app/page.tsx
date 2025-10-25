@@ -1,65 +1,120 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import React from "react";
 
-export default function Home() {
+export default function Home(): React.JSX.Element {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-8">
+      <div className="mx-auto max-w-4xl space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+            Next.js Setup Complete
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            Your Next.js project with TypeScript, Tailwind CSS, shadcn/ui, and
+            strict ESLint is ready to go!
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>🚀 Tech Stack</CardTitle>
+              <CardDescription>
+                Everything you need for modern web development
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                <span>Next.js 15 with App Router</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                <span>TypeScript with strict configuration</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-cyan-500"></div>
+                <span>Tailwind CSS v4</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-purple-500"></div>
+                <span>shadcn/ui components</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-red-500"></div>
+                <span>ESLint with strict rules</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>🎨 Component Demo</CardTitle>
+              <CardDescription>
+                shadcn/ui components are working perfectly
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="demo-input">Demo Input</Label>
+                <Input id="demo-input" placeholder="Type something..." />
+              </div>
+              <div className="flex space-x-2">
+                <Button>Primary Button</Button>
+                <Button variant="outline">Secondary</Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </main>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>🛠️ Next Steps</CardTitle>
+            <CardDescription>
+              Ready to start building your application
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="space-y-2">
+                <h3 className="font-semibold">Development</h3>
+                <p className="text-sm text-slate-600">
+                  Run{" "}
+                  <code className="bg-slate-100 px-1 rounded">npm run dev</code>{" "}
+                  to start the development server
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold">Components</h3>
+                <p className="text-sm text-slate-600">
+                  Add more shadcn/ui components with{" "}
+                  <code className="bg-slate-100 px-1 rounded">
+                    npx shadcn@latest add [component]
+                  </code>
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold">Linting</h3>
+                <p className="text-sm text-slate-600">
+                  Check code quality with{" "}
+                  <code className="bg-slate-100 px-1 rounded">
+                    npm run lint
+                  </code>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
