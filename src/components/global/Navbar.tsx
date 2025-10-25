@@ -29,9 +29,11 @@ const Navbar = () => {
     },
   ];
   return (
-    <div className="flex-row flex justify-between items-center pt-5">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex-row flex justify-between items-center px-12 py-5 bg-gradient-to-b from-black to-transparent transition-all duration-300">
       <div className="flex flex-row items-center justify-between gap-10">
-        <Text as="h1">Cinenext</Text>
+        <Text as="h1" className="text-netflix-red text-2xl font-bold">
+          Cinenext
+        </Text>
         <div className="flex flex-row items-center gap-5">
           {navTabs.map((navItem: NavItemDataType) => (
             <Link key={navItem.id}>{navItem.title}</Link>
@@ -39,11 +41,11 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex flex-row items-center gap-5">
-        <Search />
-        <Bell />
-        <User />
+        <Search className="cursor-pointer hover:text-gray-300 transition-colors" />
+        <Bell className="cursor-pointer hover:text-gray-300 transition-colors" />
+        <User className="cursor-pointer hover:text-gray-300 transition-colors" />
       </div>
-    </div>
+    </nav>
   );
 };
 
