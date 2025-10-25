@@ -44,72 +44,64 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.375rem;
+  
+  /* Netflix Brand Colors */
+  --netflix-red: #e50914;
+  --netflix-black: #000000;
+  --netflix-dark-gray: #141414;
+  --netflix-gray: #333333;
+  --netflix-light-gray: #564d4d;
+  --netflix-white: #ffffff;
+  
+  /* Theme Colors */
+  --background: var(--netflix-black);
+  --foreground: var(--netflix-white);
+  --card: var(--netflix-dark-gray);
+  --card-foreground: var(--netflix-white);
+  --popover: var(--netflix-dark-gray);
+  --popover-foreground: var(--netflix-white);
+  --primary: var(--netflix-red);
+  --primary-foreground: var(--netflix-white);
+  --secondary: var(--netflix-gray);
+  --secondary-foreground: var(--netflix-white);
+  --muted: var(--netflix-light-gray);
+  --muted-foreground: #b3b3b3;
+  --accent: var(--netflix-red);
+  --accent-foreground: var(--netflix-white);
+  --destructive: #dc2626;
+  --destructive-foreground: var(--netflix-white);
+  --border: var(--netflix-gray);
+  --input: var(--netflix-gray);
+  --ring: var(--netflix-red);
+  
+  /* Netflix specific colors */
+  --netflix-hover: #f40612;
+  --netflix-text-secondary: #b3b3b3;
+  --netflix-text-muted: #808080;
 }
 
+/* Netflix theme is primarily dark, so we keep the same values for dark mode */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: var(--netflix-black);
+  --foreground: var(--netflix-white);
+  --card: var(--netflix-dark-gray);
+  --card-foreground: var(--netflix-white);
+  --popover: var(--netflix-dark-gray);
+  --popover-foreground: var(--netflix-white);
+  --primary: var(--netflix-red);
+  --primary-foreground: var(--netflix-white);
+  --secondary: var(--netflix-gray);
+  --secondary-foreground: var(--netflix-white);
+  --muted: var(--netflix-light-gray);
+  --muted-foreground: #b3b3b3;
+  --accent: var(--netflix-red);
+  --accent-foreground: var(--netflix-white);
+  --destructive: #dc2626;
+  --destructive-foreground: var(--netflix-white);
+  --border: var(--netflix-gray);
+  --input: var(--netflix-gray);
+  --ring: var(--netflix-red);
 }
 
 @layer base {
@@ -117,6 +109,33 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  /* Netflix specific utilities */
+  .netflix-gradient {
+    background: linear-gradient(135deg, var(--netflix-red) 0%, #b81d24 100%);
+  }
+  
+  .netflix-text-gradient {
+    background: linear-gradient(135deg, var(--netflix-red) 0%, #f40612 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .netflix-shadow {
+    box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+  }
+  
+  .netflix-hover {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .netflix-hover:hover {
+    background-color: var(--netflix-hover);
+    transform: translateY(-1px);
   }
 }
