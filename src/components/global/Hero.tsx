@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/atoms";
 import { Play, Info } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <div className="relative h-[80vh] w-full">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <img
-          src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"
+        <Image
+          src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=2070&auto=format&fit=crop"
           alt="Hero background"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
 
         {/* Gradient Overlays */}
@@ -35,14 +38,14 @@ const Hero = () => {
         <div className="max-w-2xl space-y-6">
           {/* Title */}
           <Text as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold">
-            Stranger Things
+            The Kapil Sharma Show
           </Text>
 
           {/* Description */}
           <Text className="text-lg md:text-xl max-w-xl leading-relaxed">
-            When a young boy vanishes, a small town uncovers a mystery involving
-            secret experiments, terrifying supernatural forces and one strange
-            little girl.
+            Join Kapil Sharma and his hilarious gang as they bring laughter to
+            your screens with celebrity guests, comedy sketches, and
+            unforgettable entertainment.
           </Text>
 
           {/* Buttons */}
