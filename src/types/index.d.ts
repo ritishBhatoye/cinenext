@@ -38,19 +38,6 @@ type MediaDetailType = {
   type: string;
 };
 //API integration
-interface FeaturedMovieProps {
-  id: number;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-  overview: string;
-  release_date: string;
-  media_type: string;
-  vote_average: number;
-  vote_count: number;
-  popularity: number;
-  genre_ids: number[];
-}
 
 interface TVShowProps {
   id: number;
@@ -64,3 +51,7 @@ interface TVShowProps {
   popularity: number;
   genre_ids: number[];
 }
+type FilterType = {
+  id: number;
+  title: string;
+};

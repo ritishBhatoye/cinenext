@@ -1,12 +1,11 @@
+"use client";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   addComment,
   addToFavorites,
   addToWatchlist,
-  Comment,
   deleteComment,
   deleteRating,
-  Favorite,
   getComments,
   getFavorites,
   getRating,
@@ -14,16 +13,12 @@ import {
   getWatchlist,
   isFavorite,
   isInWatchlist,
-  Rating,
   removeFromFavorites,
   removeFromWatchlist,
   setRating,
   syncUserWithSupabase,
   updateComment,
   updateWatchHistory,
-  User,
-  WatchHistory,
-  WatchlistItem,
 } from "./supabaseService";
 
 export const supabaseApi = createApi({

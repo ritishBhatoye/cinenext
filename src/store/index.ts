@@ -1,3 +1,5 @@
+"use client";
+
 import { configureStore } from "@reduxjs/toolkit";
 import { moviesApi } from "../services/moviesApi";
 import { supabaseApi } from "../services/supabaseApi";
