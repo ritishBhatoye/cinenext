@@ -1,4 +1,5 @@
 import { Link, Text } from "@/components/atoms";
+import { Bell, Search, User } from "lucide-react";
 
 const Navbar = () => {
   const navTabs: NavItemDataType[] = [
@@ -28,7 +29,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <div className="flex-row flex justify-between items-center">
+    <div className="flex-row flex justify-between items-center pt-5">
       <div className="flex flex-row items-center justify-between gap-10">
         <Text as="h1">Cinenext</Text>
         <div className="flex flex-row items-center gap-5">
@@ -36,6 +37,11 @@ const Navbar = () => {
             <Link key={navItem.id}>{navItem.title}</Link>
           ))}
         </div>
+      </div>
+      <div className="flex flex-row items-center gap-5">
+        <Search />
+        <Bell />
+        <User />
       </div>
     </div>
   );
