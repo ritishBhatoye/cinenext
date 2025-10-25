@@ -25,9 +25,11 @@ const MediaRowSlider = ({ title, data, isLoading }: MediaRowSliderProps) => {
     );
   }
   return (
-    <div className="flex flex-col items-start gap-2">
-      <Text as="h3">{title}</Text>
-      <div className="flex flex-row items-start justify-around gap-2">
+    <div className="flex flex-col items-start gap-5 w-full">
+      <Text as="h1" size="3xl" weight="semibold">
+        {title}
+      </Text>
+      <div className="flex flex-row items-start gap-2 overflow-x-auto overflow-y-hidden w-full scrollbar-hide">
         {data?.map((media, index) => (
           <MediaRowItem key={index} data={media} />
         ))}
