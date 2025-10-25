@@ -38,7 +38,7 @@ export const syncUserWithSupabase = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -52,7 +52,7 @@ export const getUserByClerkId = async (clerkId: string) => {
     .eq("clerk_id", clerkId)
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data as User;
 };
 
@@ -80,7 +80,7 @@ export const getFavorites = async (userId: string) => {
     .eq("user_id", userId)
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data as Favorite[];
 };
 
@@ -100,7 +100,7 @@ export const isFavorite = async (
     .eq("movie_type", movieType)
     .single();
 
-  if (error && error.code !== "PGRST116") throw error;
+  if (error && error.code !== "PGRST116") {throw error;}
   return !!data;
 };
 
@@ -126,7 +126,7 @@ export const addToFavorites = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -145,7 +145,7 @@ export const removeFromFavorites = async (
     .eq("movie_id", movieId)
     .eq("movie_type", movieType);
 
-  if (error) throw error;
+  if (error) {throw error;}
 };
 
 // =============================================
@@ -172,7 +172,7 @@ export const getWatchlist = async (userId: string) => {
     .eq("user_id", userId)
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data as WatchlistItem[];
 };
 
@@ -192,7 +192,7 @@ export const isInWatchlist = async (
     .eq("movie_type", movieType)
     .single();
 
-  if (error && error.code !== "PGRST116") throw error;
+  if (error && error.code !== "PGRST116") {throw error;}
   return !!data;
 };
 
@@ -218,7 +218,7 @@ export const addToWatchlist = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -237,7 +237,7 @@ export const removeFromWatchlist = async (
     .eq("movie_id", movieId)
     .eq("movie_type", movieType);
 
-  if (error) throw error;
+  if (error) {throw error;}
 };
 
 // =============================================
@@ -270,7 +270,7 @@ export const getRating = async (
     .eq("movie_type", movieType)
     .single();
 
-  if (error && error.code !== "PGRST116") throw error;
+  if (error && error.code !== "PGRST116") {throw error;}
   return data as Rating | null;
 };
 
@@ -298,7 +298,7 @@ export const setRating = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -317,7 +317,7 @@ export const deleteRating = async (
     .eq("movie_id", movieId)
     .eq("movie_type", movieType);
 
-  if (error) throw error;
+  if (error) {throw error;}
 };
 
 // =============================================
@@ -360,7 +360,7 @@ export const getComments = async (
     .eq("movie_type", movieType)
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data as Comment[];
 };
 
@@ -384,7 +384,7 @@ export const addComment = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -402,7 +402,7 @@ export const updateComment = async (commentId: string, comment: string) => {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };
 
@@ -415,7 +415,7 @@ export const deleteComment = async (commentId: string) => {
     .delete()
     .eq("id", commentId);
 
-  if (error) throw error;
+  if (error) {throw error;}
 };
 
 // =============================================
@@ -444,7 +444,7 @@ export const getWatchHistory = async (userId: string) => {
     .order("watched_at", { ascending: false })
     .limit(50);
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data as WatchHistory[];
 };
 
@@ -476,6 +476,6 @@ export const updateWatchHistory = async (
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {throw error;}
   return data;
 };

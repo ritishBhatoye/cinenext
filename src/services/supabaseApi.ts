@@ -54,8 +54,13 @@ export const supabaseApi = createApi({
             avatarUrl
           );
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: ["User"],
@@ -69,8 +74,13 @@ export const supabaseApi = createApi({
         try {
           const data = await getFavorites(userId);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: ["Favorites"],
@@ -84,8 +94,13 @@ export const supabaseApi = createApi({
         try {
           const data = await isFavorite(userId, movieId, movieType);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: (result, error, { movieId, movieType }) => [
@@ -119,8 +134,13 @@ export const supabaseApi = createApi({
             moviePoster
           );
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -137,8 +157,13 @@ export const supabaseApi = createApi({
         try {
           await removeFromFavorites(userId, movieId, movieType);
           return { data: undefined };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -155,8 +180,13 @@ export const supabaseApi = createApi({
         try {
           const data = await getWatchlist(userId);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: ["Watchlist"],
@@ -170,8 +200,13 @@ export const supabaseApi = createApi({
         try {
           const data = await isInWatchlist(userId, movieId, movieType);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: (result, error, { movieId, movieType }) => [
@@ -205,8 +240,13 @@ export const supabaseApi = createApi({
             moviePoster
           );
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -223,8 +263,13 @@ export const supabaseApi = createApi({
         try {
           await removeFromWatchlist(userId, movieId, movieType);
           return { data: undefined };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -244,8 +289,13 @@ export const supabaseApi = createApi({
         try {
           const data = await getRating(userId, movieId, movieType);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: (result, error, { movieId, movieType }) => [
@@ -266,8 +316,13 @@ export const supabaseApi = createApi({
         try {
           const data = await setRating(userId, movieId, movieType, rating);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -283,8 +338,13 @@ export const supabaseApi = createApi({
         try {
           await deleteRating(userId, movieId, movieType);
           return { data: undefined };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -303,8 +363,13 @@ export const supabaseApi = createApi({
         try {
           const data = await getComments(movieId, movieType);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: (result, error, { movieId, movieType }) => [
@@ -325,8 +390,13 @@ export const supabaseApi = createApi({
         try {
           const data = await addComment(userId, movieId, movieType, comment);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: (result, error, { movieId, movieType }) => [
@@ -342,8 +412,13 @@ export const supabaseApi = createApi({
         try {
           const data = await updateComment(commentId, comment);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: ["Comments"],
@@ -354,8 +429,13 @@ export const supabaseApi = createApi({
         try {
           await deleteComment(commentId);
           return { data: undefined };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: ["Comments"],
@@ -369,8 +449,13 @@ export const supabaseApi = createApi({
         try {
           const data = await getWatchHistory(userId);
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       providesTags: ["WatchHistory"],
@@ -405,8 +490,13 @@ export const supabaseApi = createApi({
             moviePoster
           );
           return { data };
-        } catch (error: any) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+        } catch (error: unknown) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: error instanceof Error ? error.message : "Unknown error",
+            },
+          };
         }
       },
       invalidatesTags: ["WatchHistory"],
