@@ -1,14 +1,14 @@
-import { Button } from "@/components/elements";
+import Link from "@/components/atoms/Link";
+import Text from "@/components/atoms/text";
 import {
+  Button,
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
+  Input,
 } from "@/components/elements";
-import { Input } from "@/components/elements";
-import Text from "@/components/atoms/text";
-import Link from "@/components/atoms/link";
 
 export default function Home() {
   return (
