@@ -7,13 +7,17 @@ import {
   CardContent,
 } from "@/components/elements";
 import { Input } from "@/components/elements";
-import Text from "@/components/atoms/text";
-import Link from "@/components/atoms/link";
+import { Text } from "@/components/atoms";
+import { Link } from "@/components/atoms";
+import Hero from "@/components/global/Hero";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <Hero />
+
+      <div className="max-w-6xl mx-auto space-y-12 p-8">
         {/* Header */}
         <header className="text-center space-y-4">
           <Text as="h1" size="3xl" variant="netflix" className="mb-4">
