@@ -29,9 +29,9 @@ const Navbar = () => {
   ];
   return (
     <div className="flex-row flex justify-between items-center">
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between gap-10">
         <Text as="h1">Cinenext</Text>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center gap-5">
           {navTabs.map((navItem: NavItemDataType) => (
             <Link key={navItem.id}>{navItem.title}</Link>
           ))}
