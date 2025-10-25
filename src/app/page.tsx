@@ -7,9 +7,8 @@ import {
   CardContent,
 } from "@/components/elements";
 import { Input } from "@/components/elements";
-import Text from "@/components/atoms/text";
-import Link from "@/components/atoms/link";
-
+import { Text } from "@/components/atoms";
+import { Link } from "@/components/atoms";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background p-8">

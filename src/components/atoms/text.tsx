@@ -46,7 +46,7 @@ const Text = React.forwardRef<HTMLElement, TextProps>(
 
     return (
       <Component
-        ref={ref as any}
+        ref={ref as unknown}
         className={cn(
           variants[variant],
           sizes[size],
