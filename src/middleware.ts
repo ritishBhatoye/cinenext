@@ -63,13 +63,25 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith("/sign-in") ||
     req.nextUrl.pathname.startsWith("/sign-up");
 
+  const isRootPage = req.nextUrl.pathname === "/";
+
   // If user is logged in and trying to access auth pages, redirect to home
   if (session && isAuthPage) {
     return NextResponse.redirect(new URL("/home", req.url));
   }
 
+  // If user is logged in and on root page, redirect to home
+  if (session && isRootPage) {
+    return NextResponse.redirect(new URL("/home", req.url));
+  }
+
+  // If user is not logged in and on root page, redirect to sign-in
+  if (!session && isRootPage) {
+    return NextResponse.redirect(new URL("/sign-in", req.url));
+  }
+
   // If user is not logged in and trying to access protected pages, redirect to sign-in
-  if (!session && !isAuthPage) {
+  if (!session && !isAuthPage && !isRootPage) {
     return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 
@@ -78,6 +90,7 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
+    "/",
     "/home/:path*",
     "/play/:path*",
     "/favorites/:path*",
