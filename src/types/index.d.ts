@@ -11,7 +11,6 @@ interface FeaturedMovieProps {
   id: number;
   title: string;
   poster_path: string;
-
   backdrop_path: string;
   overview: string;
   release_date: string;
@@ -50,7 +49,9 @@ interface TVShowProps {
   vote_average: number;
   vote_count: number;
   popularity: number;
+  rating: number;
   genre_ids: number[];
+  media_type: string;
 }
 type FilterType = {
   id: number;
