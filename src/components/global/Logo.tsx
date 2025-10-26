@@ -48,24 +48,35 @@ const Logo = ({
   const colors = getColors();
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
+      scale: 1,
       transition: {
-        staggerChildren: 0.1,
+        duration: 0.5,
+        ease: "easeOut",
+        staggerChildren: 0.08,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
       },
     },
   };
 
   const letterVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, rotateX: -90 },
     visible: {
       opacity: 1,
       y: 0,
+      rotateX: 0,
       transition: {
         type: "spring" as const,
-        damping: 12,
-        stiffness: 200,
+        damping: 15,
+        stiffness: 300,
       },
     },
   };
@@ -91,7 +102,20 @@ const Logo = ({
               <motion.span
                 key={`cine-${index}`}
                 className={`${colors.cine} ${colors.cineHover} transition-colors duration-300 inline-block`}
-                variants={letterVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{
+                  opacity: 1,
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  opacity: { duration: 0.5, delay: index * 0.08 },
+                  y: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.15,
+                  },
+                }}
                 whileHover={{
                   scale: 1.2,
                   color: "#ef4444",
@@ -114,7 +138,20 @@ const Logo = ({
               <motion.span
                 key={`next-${index}`}
                 className={`${colors.next} ${colors.nextHover} transition-colors duration-300 inline-block`}
-                variants={letterVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{
+                  opacity: 1,
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  opacity: { duration: 0.5, delay: (index + 4) * 0.08 },
+                  y: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: (index + 4) * 0.15,
+                  },
+                }}
                 whileHover={{
                   scale: 1.2,
                   transition: { duration: 0.2 },
@@ -134,11 +171,16 @@ const Logo = ({
         </span>
         {animated ? (
           <motion.div
-            className={`ml-1.5 w-2.5 h-2.5 ${colors.dot} rounded-full`}
+            className={`ml-1.5 w-2.5 h-2.5 ${colors.dot} rounded-full shadow-lg`}
             variants={letterVariants}
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [1, 0.7, 1],
+              scale: [1, 1.3, 1],
+              opacity: [1, 0.6, 1],
+              boxShadow: [
+                "0 0 0px rgba(239, 68, 68, 0.5)",
+                "0 0 15px rgba(239, 68, 68, 0.8)",
+                "0 0 0px rgba(239, 68, 68, 0.5)",
+              ],
             }}
             transition={{
               duration: 2,
@@ -146,8 +188,9 @@ const Logo = ({
               ease: "easeInOut",
             }}
             whileHover={{
-              scale: 1.5,
-              transition: { duration: 0.2 },
+              scale: 1.8,
+              rotate: 360,
+              transition: { duration: 0.4 },
             }}
           />
         ) : (
