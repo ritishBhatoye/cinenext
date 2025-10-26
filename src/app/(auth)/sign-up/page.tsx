@@ -35,12 +35,14 @@ export default function SignUpPage() {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
       if (data.user) {
         router.push("/home");
       }
-    } catch (err: any) {
+    } catch (err: never) {
       setError(err.message || "Failed to sign up");
     } finally {
       setLoading(false);

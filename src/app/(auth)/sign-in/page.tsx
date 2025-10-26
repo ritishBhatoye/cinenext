@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,11 @@ export default function SignInPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+  };
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,20 +29,29 @@ export default function SignInPage() {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
       if (data.user) {
-        router.push("/home");
+        toast.success("Welcome back! Signed in successfully");
+        // Wait a moment for the auth state to update, then navigate
+        setTimeout(() => {
+          router.push("/home");
+        }, 500);
       }
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in");
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to sign in";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 shadow-2xl border border-red-900/20">
           <h1 className="text-3xl font-bold text-white mb-2 text-center">
@@ -98,9 +113,9 @@ export default function SignInPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 text-center space-y-3">
             <p className="text-gray-400">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/sign-up"
                 className="text-red-500 hover:text-red-400 font-medium"
@@ -108,6 +123,12 @@ export default function SignInPage() {
                 Sign up
               </Link>
             </p>
+            <button
+              onClick={handleSignOut}
+              className="text-sm text-gray-500 hover:text-gray-300"
+            >
+              Already signed in? Sign out
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
         get(name: string) {
           return req.cookies.get(name)?.value;
         },
-        set(name: string, value: string, options: unknown) {
+        set(name: string, value: string, options: CookieOptions) {
           req.cookies.set({
             name,
             value,
@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
             ...options,
           });
         },
-        remove(name: string, options: unknown) {
+        remove(name: string, options: CookieOptions) {
           req.cookies.set({
             name,
             value: "",
@@ -59,43 +59,27 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const isAuthPage =
-    req.nextUrl.pathname.startsWith("/sign-in") ||
-    req.nextUrl.pathname.startsWith("/sign-up");
+  const pathname = req.nextUrl.pathname;
 
-  const isRootPage = req.nextUrl.pathname === "/";
-
-  // If user is logged in and trying to access auth pages, redirect to home
-  if (session && isAuthPage) {
-    return NextResponse.redirect(new URL("/home", req.url));
+  // Only protect specific routes
+  if (pathname.startsWith("/home") || pathname.startsWith("/play")) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
   }
 
-  // If user is logged in and on root page, redirect to home
-  if (session && isRootPage) {
-    return NextResponse.redirect(new URL("/home", req.url));
-  }
-
-  // If user is not logged in and on root page, redirect to sign-in
-  if (!session && isRootPage) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
-  }
-
-  // If user is not logged in and trying to access protected pages, redirect to sign-in
-  if (!session && !isAuthPage && !isRootPage) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
+  // Redirect root to appropriate page
+  if (pathname === "/") {
+    if (session) {
+      return NextResponse.redirect(new URL("/home", req.url));
+    } else {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
   }
 
   return response;
 }
 
 export const config = {
-  matcher: [
-    "/",
-    "/home/:path*",
-    "/play/:path*",
-    "/favorites/:path*",
-    "/watchlist/:path*",
-    "/sign-in",
-    "/sign-up",
-  ],
+  matcher: ["/", "/home/:path*", "/play/:path*"],
 };

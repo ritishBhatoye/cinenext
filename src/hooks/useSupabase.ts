@@ -56,7 +56,7 @@ export const useSupabaseUser = () => {
         .eq("id", userId)
         .single();
 
-      if (error) throw error;
+      if (error) {throw error;}
       setProfile(data);
     } catch (error) {
       console.error("Error loading profile:", error);

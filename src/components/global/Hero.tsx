@@ -56,14 +56,12 @@ const Hero = ({ movie }: props) => {
         <div className="max-w-2xl space-y-6">
           {/* Title */}
           <Text as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold">
-            The Kapil Sharma Show
+            {movie.title}
           </Text>
 
           {/* Description */}
           <Text className="text-lg md:text-xl max-w-xl leading-relaxed">
-            Join Kapil Sharma and his hilarious gang as they bring laughter to
-            your screens with celebrity guests, comedy sketches, and
-            unforgettable entertainment.
+            {movie?.overview}
           </Text>
 
           {/* Buttons */}

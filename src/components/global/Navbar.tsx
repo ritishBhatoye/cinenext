@@ -1,8 +1,10 @@
 import { Link } from "@/components/atoms";
 import { Bell, Search, User } from "lucide-react";
 import Logo from "./Logo";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const navTabs: NavItemDataType[] = [
     {
       id: "home",
@@ -35,7 +37,16 @@ const Navbar = () => {
         <Logo />
         <div className="flex flex-row items-center gap-5">
           {navTabs.map((navItem: NavItemDataType) => (
-            <Link key={navItem.id}>{navItem.title}</Link>
+            <Link
+              key={navItem.id}
+              className={`${
+                pathname.includes(navItem?.id)
+                  ? "text-red-500 border-b border-b-red-500 pb-2"
+                  : "text-white"
+              }`}
+            >
+              {navItem.title}
+            </Link>
           ))}
         </div>
       </div>

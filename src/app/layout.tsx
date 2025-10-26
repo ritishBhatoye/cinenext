@@ -4,6 +4,7 @@ import "./globals.css";
 import NavbarWrapper from "@/components/global/NavbarWrapper";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
           <ReduxProvider>
             <NavbarWrapper />
             {children}
+            <Toaster position="top-right" richColors />
           </ReduxProvider>
         </AuthProvider>
       </body>
