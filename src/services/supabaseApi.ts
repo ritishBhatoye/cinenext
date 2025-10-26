@@ -2,10 +2,13 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   addComment,
+  User,
   addToFavorites,
   addToWatchlist,
   deleteComment,
+  WatchHistory,
   deleteRating,
+  Rating,
   getComments,
   getFavorites,
   getRating,
@@ -13,10 +16,12 @@ import {
   getWatchlist,
   isFavorite,
   isInWatchlist,
+  WatchlistItem,
   removeFromFavorites,
   removeFromWatchlist,
   setRating,
   syncUserWithSupabase,
+  Favorite,
   updateComment,
   updateWatchHistory,
 } from "./supabaseService";
@@ -354,7 +359,7 @@ export const supabaseApi = createApi({
       Comment[],
       { movieId: number; movieType: "movie" | "tv" }
     >({
-      queryFn: async ({ movieId, movieType }) => {
+      query: async ({ movieId, movieType }) => {
         try {
           const data = await getComments(movieId, movieType);
           return { data };

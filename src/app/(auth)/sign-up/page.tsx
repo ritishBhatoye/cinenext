@@ -42,8 +42,10 @@ export default function SignUpPage() {
       if (data.user) {
         router.push("/home");
       }
-    } catch (err: never) {
-      setError(err.message || "Failed to sign up");
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to sign up";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

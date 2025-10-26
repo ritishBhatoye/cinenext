@@ -54,7 +54,7 @@ const Logo = ({
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
         staggerChildren: 0.08,
       },
     },
@@ -62,7 +62,7 @@ const Logo = ({
       scale: 1.05,
       transition: {
         duration: 0.3,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };
@@ -112,7 +112,7 @@ const Logo = ({
                   y: {
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                     delay: index * 0.15,
                   },
                 }}
@@ -148,7 +148,7 @@ const Logo = ({
                   y: {
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                     delay: (index + 4) * 0.15,
                   },
                 }}
@@ -185,7 +185,7 @@ const Logo = ({
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             }}
             whileHover={{
               scale: 1.8,
