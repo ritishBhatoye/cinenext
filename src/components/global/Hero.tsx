@@ -3,13 +3,31 @@ import { Text } from "@/components/atoms";
 import { Play, Info } from "lucide-react";
 import Image from "next/image";
 
-const Hero = () => {
+interface props {
+  movie: FeaturedMovieProps;
+}
+
+const Hero = ({ movie }: props) => {
+  const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/original";
+  if (!movie) {
+    return (
+      <div>
+        <div className="flex-1 items-center justify-center">
+          <Text className="text-gray-500">No featured content</Text>
+        </div>
+      </div>
+    );
+  }
+
+  const backdropUri = movie.backdrop_path
+    ? `${TMDB_IMAGE_BASE}${movie.backdrop_path}`
+    : null;
   return (
     <div className="relative h-[80vh] w-full">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=2070&auto=format&fit=crop"
+          src={backdropUri ?? ""}
           alt="Hero background"
           fill
           className="object-cover"
@@ -38,14 +56,12 @@ const Hero = () => {
         <div className="max-w-2xl space-y-6">
           {/* Title */}
           <Text as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold">
-            The Kapil Sharma Show
+            {movie.title}
           </Text>
 
           {/* Description */}
           <Text className="text-lg md:text-xl max-w-xl leading-relaxed">
-            Join Kapil Sharma and his hilarious gang as they bring laughter to
-            your screens with celebrity guests, comedy sketches, and
-            unforgettable entertainment.
+            {movie?.overview}
           </Text>
 
           {/* Buttons */}

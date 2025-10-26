@@ -1,7 +1,10 @@
-import { Link, Text } from "@/components/atoms";
+import { Link } from "@/components/atoms";
 import { Bell, Search, User } from "lucide-react";
+import Logo from "./Logo";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const navTabs: NavItemDataType[] = [
     {
       id: "home",
@@ -29,14 +32,21 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex-row flex justify-between items-center px-12 py-5 bg-gradient-to-b from-black to-transparent transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex-row flex justify-between items-center px-12 py-5 bg-gradient-to-b from-black to-transparent transition-all duration-300 w-11/12 mx-auto">
       <div className="flex flex-row items-center justify-between gap-10">
-        <Text as="h1" className="text-netflix-red text-2xl font-bold">
-          Cinenext
-        </Text>
+        <Logo />
         <div className="flex flex-row items-center gap-5">
           {navTabs.map((navItem: NavItemDataType) => (
-            <Link key={navItem.id}>{navItem.title}</Link>
+            <Link
+              key={navItem.id}
+              className={`${
+                pathname.includes(navItem?.id)
+                  ? "text-red-500 border-b border-b-red-500 pb-2"
+                  : "text-white"
+              }`}
+            >
+              {navItem.title}
+            </Link>
           ))}
         </div>
       </div>
