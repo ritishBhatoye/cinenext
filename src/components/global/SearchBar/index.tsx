@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Input } from "@/components/elements/Input";
-import { Dropdown, type DropdownOption } from "@/components/elements/Dropdown";
+import { type DropdownOption } from "@/components/elements/Dropdown";
 import { Search, Film, Tv, Calendar } from "lucide-react";
-import { Text } from "@/components/atoms";
 import { SearchFilter } from "@/hooks/useSearch";
+import SearchTitle from "./SearchTitle";
+import SearchInput from "./SearchInput";
+import FilterDropdown from "./FilterDropdown";
 
 interface SearchBarProps {
   query?: string;
@@ -15,6 +16,10 @@ interface SearchBarProps {
   onSearch?: () => void;
   isLoading?: boolean;
   showTitle?: boolean;
+  selectedGenre?: string;
+  onGenreChange?: (genre: string) => void;
+  selectedYear?: string;
+  onYearChange?: (year: string) => void;
 }
 
 const SearchBar = ({
@@ -25,10 +30,12 @@ const SearchBar = ({
   onSearch,
   isLoading = false,
   showTitle = true,
+  selectedGenre = "",
+  onGenreChange,
+  selectedYear = "",
+  onYearChange,
 }: SearchBarProps) => {
   const [searchQuery, setSearchQuery] = useState(query);
-  const [selectedGenre, setSelectedGenre] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
   const [selectedType, setSelectedType] = useState(
     filter === "all" ? "" : filter
   );
@@ -88,84 +95,45 @@ const SearchBar = ({
 
   return (
     <div className="flex flex-col items-center gap-6 w-full mx-auto">
-      {showTitle && (
-        <>
-          <Text as="h1" className="text-white font-bold text-5xl">
-            Discover Your Next Favorite
-          </Text>
-          <Text as="h5" className="text-gray-400 font-medium text-lg">
-            Search through thousands of movies, TV shows, and anime series
-          </Text>
-        </>
-      )}
+      <SearchTitle show={showTitle} />
+
       <div className="w-full border border-netflix-light-gray rounded-xl p-6 bg-netflix-dark-gray/50 backdrop-blur-sm">
-        <div className="space-y-4 ">
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-netflix-text-muted" />
-            <Input
-              type="text"
-              placeholder="Search movies and TV shows..."
-              value={searchQuery}
-              onChange={(e) => handleQueryChange(e.target.value)}
-              className="pl-10 h-12 text-base"
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        <div className="space-y-4">
+          <SearchInput
+            value={searchQuery}
+            onChange={handleQueryChange}
+            onEnter={handleSearch}
+            isLoading={isLoading}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <FilterDropdown
+              label="Genre"
+              options={genreOptions}
+              value={selectedGenre}
+              onChange={onGenreChange || (() => {})}
+              placeholder="All genres"
+              searchable
               disabled={isLoading}
             />
-            {isLoading && (
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              </div>
-            )}
-          </div>
 
-          {/* Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-netflix-text-secondary">
-                Genre
-              </label>
-              <Dropdown
-                options={genreOptions}
-                value={selectedGenre}
-                onChange={setSelectedGenre}
-                placeholder="All genres"
-                searchable
-                clearable
-                variant="outline"
-                disabled={isLoading}
-              />
-            </div>
+            <FilterDropdown
+              label="Year"
+              options={yearOptions}
+              value={selectedYear}
+              onChange={onYearChange || (() => {})}
+              placeholder="Any year"
+              disabled={isLoading}
+            />
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-netflix-text-secondary">
-                Year
-              </label>
-              <Dropdown
-                options={yearOptions}
-                value={selectedYear}
-                onChange={setSelectedYear}
-                placeholder="Any year"
-                clearable
-                variant="outline"
-                disabled={isLoading}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-netflix-text-secondary">
-                Type
-              </label>
-              <Dropdown
-                options={typeOptions}
-                value={selectedType}
-                onChange={handleTypeChange}
-                placeholder="All content"
-                clearable
-                variant="outline"
-                disabled={isLoading}
-              />
-            </div>
+            <FilterDropdown
+              label="Type"
+              options={typeOptions}
+              value={selectedType}
+              onChange={handleTypeChange}
+              placeholder="All content"
+              disabled={isLoading}
+            />
           </div>
         </div>
       </div>

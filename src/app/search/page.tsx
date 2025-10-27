@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import SearchBar from "@/components/global/SearchBar";
 import MediaItem from "@/components/landing/MediaRowSlider/MediaItem";
 import { useTodayTrending } from "@/hooks/useTodayTrending";
@@ -22,6 +23,10 @@ const SearchPage = () => {
     autoSearch: true,
   });
 
+  // Additional filter states managed in the page
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
   // Show search results if user has searched, otherwise show trending
   const displayData = hasSearched ? results : combined?.data;
   const displayTitle = hasSearched ? "Search Results" : "Trending Today";
@@ -41,6 +46,10 @@ const SearchPage = () => {
               onSearch={search}
               isLoading={isLoading}
               showTitle={!hasSearched}
+              selectedGenre={selectedGenre}
+              onGenreChange={setSelectedGenre}
+              selectedYear={selectedYear}
+              onYearChange={setSelectedYear}
             />
           </div>
         </div>
