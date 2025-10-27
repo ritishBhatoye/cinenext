@@ -1,5 +1,5 @@
 import { Text } from "@/components/atoms";
-import MediaRowItem from "./MediaRowItem";
+import MediaRowItem from "./MediaItem";
 
 interface MediaRowSliderProps {
   title: string;

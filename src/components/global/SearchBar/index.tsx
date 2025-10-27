@@ -49,7 +49,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 w-6/12 mx-auto">
+    <div className="flex flex-col items-center gap-6 w-full mx-auto">
       <Text as="h1" className="text-white font-bold text-5xl">
         Discover Your Next Favorite
       </Text>

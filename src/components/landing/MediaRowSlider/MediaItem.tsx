@@ -12,7 +12,7 @@ interface props {
 
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
-const MediaRowItem = ({ data }: props) => {
+const MediaItem = ({ data }: props) => {
   const [showMediaContent, setShowMediaContent] = useState(false);
 
   // Helper function to determine media type based on available properties
@@ -95,4 +95,4 @@ const MediaRowItem = ({ data }: props) => {
   );
 };
 
-export default MediaRowItem;
+export default MediaItem;
