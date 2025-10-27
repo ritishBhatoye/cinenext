@@ -64,15 +64,17 @@ const MediaItem = ({ data }: props) => {
       href={`/play/${data?.id}`}
       className="shrink-0 relative"
     >
-      <Image
-        src={`${TMDB_IMAGE_BASE}${data?.poster_path}`}
-        alt={`${getMediaTitle(data)} poster`}
-        width={210}
-        height={140}
-        className="rounded-lg"
-      />
+      <div className="overflow-hidden rounded-lg">
+        <Image
+          src={`${TMDB_IMAGE_BASE}${data?.poster_path}`}
+          alt={`${getMediaTitle(data)} poster`}
+          width={210}
+          height={315}
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300 ease-in-out"
+        />
+      </div>
       {showMediaContent && (
-        <div className="absolute bg-linear-to-t from-black via-black/60 to-transparent bottom-0 w-full px-3 py-5 ">
+        <div className="absolute bg-linear-to-t w from-black via-black/60 to-transparent bottom-0 w-full px-3 py-5 ">
           <div className=" flex-col items-start gap-10 justify-around">
             <Text className="text-white text-lg truncate font-semibold   rounded">
               {getMediaTitle(data)}
