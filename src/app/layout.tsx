@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     "Watch unlimited movies, TV shows, and entertainment content. Stream your favorite shows anytime, anywhere.",
   icons: {
-    icon: "/myicon.ico",
+    icon: "/favicon.ico",
   },
 };
 

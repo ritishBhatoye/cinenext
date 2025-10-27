@@ -103,7 +103,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      providesTags: (result, error, { movieId, movieType }) => [
+      providesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Favorites", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -143,7 +143,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         "Favorites",
         { type: "Favorites", id: `${movieType}-${movieId}` },
       ],
@@ -166,7 +166,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         "Favorites",
         { type: "Favorites", id: `${movieType}-${movieId}` },
       ],
@@ -209,7 +209,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      providesTags: (result, error, { movieId, movieType }) => [
+      providesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Watchlist", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -249,7 +249,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         "Watchlist",
         { type: "Watchlist", id: `${movieType}-${movieId}` },
       ],
@@ -272,7 +272,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         "Watchlist",
         { type: "Watchlist", id: `${movieType}-${movieId}` },
       ],
@@ -298,7 +298,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      providesTags: (result, error, { movieId, movieType }) => [
+      providesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Ratings", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -325,7 +325,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Ratings", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -347,7 +347,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Ratings", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -372,7 +372,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      providesTags: (result, error, { movieId, movieType }) => [
+      providesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Comments", id: `${movieType}-${movieId}` },
       ],
     }),
@@ -399,7 +399,7 @@ export const supabaseApi = createApi({
           };
         }
       },
-      invalidatesTags: (result, error, { movieId, movieType }) => [
+      invalidatesTags: (_result, _error, { movieId, movieType }) => [
         { type: "Comments", id: `${movieType}-${movieId}` },
       ],
     }),

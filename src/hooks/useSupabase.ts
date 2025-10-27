@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 
 export interface Profile {
   id: string;
@@ -17,7 +18,7 @@ export interface Profile {
  * const { user, profile, userId, loading } = useSupabaseUser();
  */
 export const useSupabaseUser = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -56,10 +57,12 @@ export const useSupabaseUser = () => {
         .eq("id", userId)
         .single();
 
-      if (error) {throw error;}
+      if (error) {
+        throw error;
+      }
       setProfile(data);
-    } catch (error) {
-      console.error("Error loading profile:", error);
+    } catch {
+      // Error loading profile - silently fail
     } finally {
       setLoading(false);
     }
