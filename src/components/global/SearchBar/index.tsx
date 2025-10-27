@@ -49,71 +49,76 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="border border-netflix-light-gray rounded-xl p-6 bg-netflix-dark-gray/50 backdrop-blur-sm">
-      <Text as="h1" className="text-white font-semibold">
+    <div className="flex flex-col items-center gap-6 w-6/12 mx-auto">
+      <Text as="h1" className="text-white font-bold text-5xl">
         Discover Your Next Favorite
       </Text>
-      <Text as="h5" variant="netflix" className="text-gray-400 font-medium">
+      <Text
+        as="h5"
+        variant="netflix"
+        className="text-gray-400 font-medium text-lg"
+      >
         Search through thousands of movies, TV shows, and anime series
       </Text>
-
-      <div className="space-y-4">
-        {/* Search Input */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-netflix-text-muted" />
-          <Input
-            type="text"
-            placeholder="Search movies and TV shows..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 h-12 text-base"
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-          />
-        </div>
-
-        {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-netflix-text-secondary">
-              Genre
-            </label>
-            <Dropdown
-              options={genreOptions}
-              value={selectedGenre}
-              onChange={setSelectedGenre}
-              placeholder="All genres"
-              searchable
-              clearable
-              variant="outline"
+      <div className="w-full border border-netflix-light-gray rounded-xl p-6 bg-netflix-dark-gray/50 backdrop-blur-sm">
+        <div className="space-y-4 ">
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-netflix-text-muted" />
+            <Input
+              type="text"
+              placeholder="Search movies and TV shows..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-12 text-base"
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-netflix-text-secondary">
-              Year
-            </label>
-            <Dropdown
-              options={yearOptions}
-              value={selectedYear}
-              onChange={setSelectedYear}
-              placeholder="Any year"
-              clearable
-              variant="outline"
-            />
-          </div>
+          {/* Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-netflix-text-secondary">
+                Genre
+              </label>
+              <Dropdown
+                options={genreOptions}
+                value={selectedGenre}
+                onChange={setSelectedGenre}
+                placeholder="All genres"
+                searchable
+                clearable
+                variant="outline"
+              />
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-netflix-text-secondary">
-              Type
-            </label>
-            <Dropdown
-              options={typeOptions}
-              value={selectedType}
-              onChange={setSelectedType}
-              placeholder="Movies & TV"
-              clearable
-              variant="outline"
-            />
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-netflix-text-secondary">
+                Year
+              </label>
+              <Dropdown
+                options={yearOptions}
+                value={selectedYear}
+                onChange={setSelectedYear}
+                placeholder="Any year"
+                clearable
+                variant="outline"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-netflix-text-secondary">
+                Type
+              </label>
+              <Dropdown
+                options={typeOptions}
+                value={selectedType}
+                onChange={setSelectedType}
+                placeholder="Movies & TV"
+                clearable
+                variant="outline"
+              />
+            </div>
           </div>
         </div>
       </div>
