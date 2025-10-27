@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   title: "CineNext - Stream Movies & TV Shows",
   description:
     "Watch unlimited movies, TV shows, and entertainment content. Stream your favorite shows anytime, anywhere.",
+  icons: {
+    icon: "/myicon.ico",
+  },
 };
 
 export default function RootLayout({
