@@ -1,10 +1,11 @@
 import { Link } from "@/components/atoms";
 import { Bell, Search, User } from "lucide-react";
 import Logo from "./Logo";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const navTabs: NavItemDataType[] = [
     {
       id: "home",
@@ -51,7 +52,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex flex-row items-center gap-5">
-        <Search className="cursor-pointer hover:text-gray-300 transition-colors" />
+        <Search
+          onClick={() => router.push("/search")}
+          className="cursor-pointer hover:text-gray-300 transition-colors"
+        />
         <Bell className="cursor-pointer hover:text-gray-300 transition-colors" />
         <User className="cursor-pointer hover:text-gray-300 transition-colors" />
       </div>
