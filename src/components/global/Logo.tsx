@@ -20,27 +20,27 @@ const Logo = ({
     switch (variant) {
       case "light":
         return {
-          cine: "text-red-500",
+          cine: "bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent",
           next: "text-gray-900",
-          cineHover: "group-hover:text-red-400",
+          cineHover: "group-hover:from-red-300 group-hover:to-red-500",
           nextHover: "group-hover:text-gray-700",
-          dot: "bg-red-500",
+          dot: "bg-gradient-to-r from-red-400 to-red-600",
         };
       case "dark":
         return {
-          cine: "text-red-700",
+          cine: "bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent",
           next: "text-gray-100",
-          cineHover: "group-hover:text-red-600",
+          cineHover: "group-hover:from-red-500 group-hover:to-red-700",
           nextHover: "group-hover:text-white",
-          dot: "bg-red-700",
+          dot: "bg-gradient-to-r from-red-600 to-red-800",
         };
       default:
         return {
-          cine: "text-red-600",
+          cine: "bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent",
           next: "text-white",
-          cineHover: "group-hover:text-red-500",
+          cineHover: "group-hover:from-red-400 group-hover:to-red-600",
           nextHover: "group-hover:text-gray-200",
-          dot: "bg-red-600",
+          dot: "bg-gradient-to-r from-red-500 to-red-700",
         };
     }
   };
@@ -101,7 +101,7 @@ const Logo = ({
             animated ? (
               <motion.span
                 key={`cine-${index}`}
-                className={`${colors.cine} ${colors.cineHover} transition-colors duration-300 inline-block`}
+                className={`${colors.cine} ${colors.cineHover} transition-all duration-300 inline-block`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: 1,
@@ -118,7 +118,6 @@ const Logo = ({
                 }}
                 whileHover={{
                   scale: 1.2,
-                  color: "#ef4444",
                   transition: { duration: 0.2 },
                 }}
               >
@@ -127,7 +126,7 @@ const Logo = ({
             ) : (
               <span
                 key={`cine-${index}`}
-                className={`${colors.cine} ${colors.cineHover} transition-colors duration-300 inline-block`}
+                className={`${colors.cine} ${colors.cineHover} transition-all duration-300 inline-block`}
               >
                 {letter}
               </span>
@@ -195,7 +194,7 @@ const Logo = ({
           />
         ) : (
           <div
-            className={`ml-1.5 w-2.5 h-2.5 ${colors.dot} rounded-full transition-transform duration-200 group-hover:scale-110`}
+            className={`ml-1.5 w-2.5 h-2.5 ${colors.dot} rounded-full transition-transform duration-200 group-hover:scale-110 shadow-lg`}
           />
         )}
       </motion.div>
