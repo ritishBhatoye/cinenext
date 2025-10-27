@@ -7,7 +7,7 @@ interface SearchTitleProps {
 }
 
 const SearchTitle = ({ show }: SearchTitleProps) => {
-  if (!show) return null;
+  if (!show) {return null;}
 
   return (
     <>

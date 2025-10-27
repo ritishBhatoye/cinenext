@@ -243,16 +243,24 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       >
         <div ref={dropdownRef}>
           {/* Trigger */}
-          <button
-            type="button"
-            onClick={handleToggle}
-            disabled={disabled}
+          <div
             className={cn(
               dropdownTriggerVariants({ variant, size: triggerSize }),
-              isOpen && "ring-2 ring-primary/20 border-primary"
+              isOpen && "ring-2 ring-primary/20 border-primary",
+              disabled && "pointer-events-none opacity-50",
+              "cursor-pointer"
             )}
+            onClick={handleToggle}
+            role="button"
+            tabIndex={disabled ? -1 : 0}
             aria-haspopup="listbox"
             aria-expanded={isOpen}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleToggle();
+              }
+            }}
           >
             {renderTrigger ? (
               renderTrigger(selectedOption, isOpen)
@@ -286,7 +294,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                 </div>
               </>
             )}
-          </button>
+          </div>
 
           {/* Dropdown Content */}
           {isOpen && (
