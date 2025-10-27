@@ -1,6 +1,6 @@
 // Elements - Reusable UI components
-export { Button } from "../ui/button";
-export { Input } from "../ui/input";
+export { Button } from "../elements/Button";
+export { Input } from "../elements/Input";
 export {
   Card,
   CardHeader,
@@ -9,5 +9,5 @@ export {
   CardContent,
   CardFooter,
   CardAction,
-} from "../ui/card";
-export { Label } from "../ui/label";
+} from "../elements/Card";
+export { Label } from "../elements/Label";

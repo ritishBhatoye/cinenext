@@ -1,5 +1,5 @@
 import { Text } from "@/components/atoms";
-import MediaRowItem from "./MediaRowItem";
+import MediaRowItem from "./MediaItem";
 
 interface MediaRowSliderProps {
   title: string;
@@ -10,14 +10,14 @@ interface MediaRowSliderProps {
 const MediaRowSlider = ({ title, data, isLoading }: MediaRowSliderProps) => {
   if (isLoading) {
     return (
-      <div className="mb-6">
+      <div className="mb-6 w-full">
         <Text className="text-white text-lg font-bold px-4 mb-3">{title}</Text>
-        <div className="flex-row px-4">
-          {[1, 2, 3].map((i) => (
+        <div className="flex-row flex gap-5 px-4 overflow-x-auto overflow-y-hidden w-full scrollbar-hide">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
             <div
               key={i}
-              className="bg-gray-800 rounded-md mr-2"
-              style={{ width: 110, height: 160 }}
+              className="bg-gray-800 rounded-lg mr-2 animate-pulse"
+              style={{ width: 400, height: 250 }}
             />
           ))}
         </div>

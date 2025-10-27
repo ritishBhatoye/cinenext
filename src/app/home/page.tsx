@@ -9,7 +9,8 @@ export default function HomePage() {
     useHomeContent();
 
   const featuredMovie = featured?.data?.[0];
-
+  //   console.log("Featured data:", featured);
+  //   console.log("Top 10 data:", top10);
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
