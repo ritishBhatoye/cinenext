@@ -15,6 +15,7 @@ const PlayPage = () => {
   const id = params.id as string;
   const type = searchParams.get("type") || "movie";
   const [isInWatchlist, setIsInWatchlist] = useState(false);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
 
   const { data: movieData, isLoading: movieLoading } = useGetMovieDetailsQuery(
     Number(id),
@@ -58,20 +59,48 @@ const PlayPage = () => {
       ? (data as MovieDetails).runtime
       : (data as TVShowDetails).episode_run_time?.[0] || 45;
 
-  // VidKing API embed URL
-  const embedUrl = `https://www.vidking.net/embed/${type}/${id}`;
+  // Get all YouTube videos
+  const youtubeVideos =
+    data.videos?.results?.filter((video) => video.site === "YouTube") || [];
+
+  // Get the official trailer or teaser from TMDB videos
+  const officialVideo =
+    youtubeVideos.find(
+      (video) =>
+        (video.type === "Trailer" || video.type === "Teaser") && video.official
+    ) ||
+    youtubeVideos.find(
+      (video) => video.type === "Trailer" || video.type === "Teaser"
+    ) ||
+    youtubeVideos[0];
+
+  // Use selected video or default to official video
+  const currentVideo = youtubeVideos[selectedVideoIndex] || officialVideo;
+  const videoUrl = currentVideo
+    ? `https://www.youtube.com/embed/${currentVideo.key}?autoplay=1&rel=0`
+    : null;
 
   return (
     <div className="min-h-screen bg-netflix-black text-white">
       {/* Video Player */}
       <div className="relative w-full aspect-video bg-black">
-        <iframe
-          src={embedUrl}
-          className="w-full h-full"
-          allowFullScreen
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          title={title}
-        />
+        {videoUrl ? (
+          <iframe
+            src={videoUrl}
+            className="w-full h-full"
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title={title}
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-linear-to-br from-gray-900 to-black">
+            <Play size={80} className="text-gray-600 mb-4" />
+            <p className="text-gray-400 text-xl">No video available</p>
+            <p className="text-gray-500 text-sm mt-2">
+              Check back later for trailers and content
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Content Details */}
@@ -170,6 +199,50 @@ const PlayPage = () => {
                   <p className="font-medium text-sm">{actor.name}</p>
                   <p className="text-gray-400 text-xs">{actor.character}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Videos & Trailers */}
+        {youtubeVideos.length > 1 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Videos & Trailers</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {youtubeVideos.slice(0, 6).map((video, index) => (
+                <button
+                  key={video.id}
+                  onClick={() => {
+                    setSelectedVideoIndex(index);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className={`group cursor-pointer text-left ${
+                    selectedVideoIndex === index
+                      ? "ring-2 ring-netflix-red rounded-lg"
+                      : ""
+                  }`}
+                >
+                  <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-2 relative">
+                    <Image
+                      src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
+                      alt={video.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                      <Play size={50} fill="white" className="text-white" />
+                    </div>
+                    {selectedVideoIndex === index && (
+                      <div className="absolute top-2 right-2 bg-netflix-red text-white text-xs px-2 py-1 rounded">
+                        Now Playing
+                      </div>
+                    )}
+                  </div>
+                  <p className="font-medium text-sm line-clamp-1">
+                    {video.name}
+                  </p>
+                  <p className="text-gray-400 text-xs">{video.type}</p>
+                </button>
               ))}
             </div>
           </div>
