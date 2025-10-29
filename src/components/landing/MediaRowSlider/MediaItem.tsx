@@ -57,11 +57,15 @@ const MediaItem = ({ data }: props) => {
     return item.title || item.name || "";
   };
 
+  // Determine the type for the URL
+  const mediaType =
+    data?.media_type || (data && "title" in data ? "movie" : "tv");
+
   return (
     <Link
       onMouseOver={() => setShowMediaContent(true)}
       onMouseLeave={() => setShowMediaContent(false)}
-      href={`/play/${data?.id}`}
+      href={`/play/${data?.id}?type=${mediaType}`}
       className="shrink-0 relative"
     >
       <div className="overflow-hidden rounded-lg">

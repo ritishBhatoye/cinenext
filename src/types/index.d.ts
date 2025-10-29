@@ -87,3 +87,99 @@ interface PersonResult {
   known_for: (FeaturedMovieProps | TVShowProps)[];
   media_type: "person";
 }
+
+// Movie and TV Show Details
+interface MovieDetails {
+  id: number;
+  title: string;
+  original_title: string;
+  poster_path: string;
+  backdrop_path: string;
+  overview: string;
+  release_date: string;
+  runtime: number;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  genres: Genre[];
+  status: string;
+  tagline: string;
+  budget: number;
+  revenue: number;
+  imdb_id: string;
+  videos: {
+    results: Video[];
+  };
+  credits: {
+    cast: Cast[];
+    crew: Crew[];
+  };
+  similar: TMDBResponse<FeaturedMovieProps>;
+  recommendations: TMDBResponse<FeaturedMovieProps>;
+}
+
+interface TVShowDetails {
+  id: number;
+  name: string;
+  original_name: string;
+  poster_path: string;
+  backdrop_path: string;
+  overview: string;
+  first_air_date: string;
+  last_air_date: string;
+  episode_run_time: number[];
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  genres: Genre[];
+  status: string;
+  tagline: string;
+  number_of_seasons: number;
+  number_of_episodes: number;
+  seasons: Season[];
+  videos: {
+    results: Video[];
+  };
+  credits: {
+    cast: Cast[];
+    crew: Crew[];
+  };
+  similar: TMDBResponse<TVShowProps>;
+  recommendations: TMDBResponse<TVShowProps>;
+}
+
+interface Video {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official: boolean;
+  published_at: string;
+}
+
+interface Cast {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string;
+  order: number;
+}
+
+interface Crew {
+  id: number;
+  name: string;
+  job: string;
+  department: string;
+  profile_path: string;
+}
+
+interface Season {
+  id: number;
+  name: string;
+  season_number: number;
+  episode_count: number;
+  air_date: string;
+  poster_path: string;
+  overview: string;
+}
