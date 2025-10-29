@@ -108,6 +108,28 @@ export const moviesApi = createApi({
       query: () => `/genre/tv/list?api_key=${API_KEY}`,
       transformResponse: (response: { genres: Genre[] }) => response.genres,
     }),
+
+    // Get Movie Details
+    getMovieDetails: builder.query<MovieDetails, number>({
+      query: (movieId) =>
+        `/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits,similar,recommendations`,
+    }),
+
+    // Get TV Show Details
+    getTVShowDetails: builder.query<TVShowDetails, number>({
+      query: (tvId) =>
+        `/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos,credits,similar,recommendations`,
+    }),
+
+    // Search Multi (Movies and TV Shows)
+    searchMulti: builder.query<SearchResult[], string>({
+      query: (query) =>
+        `/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(
+          query
+        )}&page=1`,
+      transformResponse: (response: TMDBResponse<SearchResult>) =>
+        response.results,
+    }),
   }),
 });
 
@@ -126,4 +148,7 @@ export const {
   useGetTVShowsByGenreQuery,
   useGetMovieGenresQuery,
   useGetTVGenresQuery,
+  useGetMovieDetailsQuery,
+  useGetTVShowDetailsQuery,
+  useSearchMultiQuery,
 } = moviesApi;
