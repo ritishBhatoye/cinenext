@@ -40,6 +40,7 @@ const Navbar = () => {
           {navTabs.map((navItem: NavItemDataType) => (
             <Link
               key={navItem.id}
+              href={`/${navItem.id}`}
               className={`${
                 pathname.includes(navItem?.id)
                   ? "text-red-500 border-b border-b-red-500 pb-2"
