@@ -3,23 +3,26 @@
 import { useState } from "react";
 import Hero from "@/components/global/Hero";
 import MediaItem from "@/components/landing/MediaRowSlider/MediaItem";
-import { useGetTrendingTVShowsQuery } from "@/services/moviesApi";
+import { useGetTrendingMoviesQuery } from "@/services/moviesApi";
 import { useMediaFilters } from "@/hooks/useMediaFilters";
 import { MEDIA_FILTERS, MediaFilterId } from "@/constants/filters";
 
-export default function TvShowsPage() {
-  const { data: featuredShows } = useGetTrendingTVShowsQuery();
+export default function MoviesPage() {
+  const { data: featuredMovies } = useGetTrendingMoviesQuery();
   const [activeFilter, setActiveFilter] =
     useState<MediaFilterId>("most-popular");
 
-  const { data: displayData, isLoading } = useMediaFilters(activeFilter, "tv");
+  const { data: displayData, isLoading } = useMediaFilters(
+    activeFilter,
+    "movie"
+  );
 
-  const featuredShow = featuredShows?.[0];
+  const featuredMovie = featuredMovies?.[0];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      {featuredShow && <Hero movie={featuredShow} />}
+      {featuredMovie && <Hero movie={featuredMovie} />}
 
       <div className="mx-auto space-y-8 p-8">
         {/* Filter Tabs */}
