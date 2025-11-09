@@ -4,7 +4,8 @@ import { Play, Info } from "lucide-react";
 import Image from "next/image";
 
 interface props {
-  movie: FeaturedMovieProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  movie: any;
 }
 
 const Hero = ({ movie }: props) => {

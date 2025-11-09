@@ -5,7 +5,8 @@ import { Text } from "@/components/atoms";
 import { Star } from "lucide-react";
 
 interface props {
-  data?: FeaturedMovieProps | TVShowProps | any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
 }
 
 // Type for media items that might be movies or TV shows
