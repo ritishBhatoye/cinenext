@@ -5,7 +5,7 @@ import { Text } from "@/components/atoms";
 import { Star } from "lucide-react";
 
 interface props {
-  data?: FeaturedMovieProps | TVShowProps;
+  data?: FeaturedMovieProps | TVShowProps | any;
 }
 
 // Type for media items that might be movies or TV shows
