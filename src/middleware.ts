@@ -8,7 +8,15 @@ export async function middleware(req: NextRequest) {
   const hasAuthCookie = req.cookies.has("sb-vzpqfyipmbrsmlkthlms-auth-token");
 
   // Protect specific routes
-  if (pathname.startsWith("/home") || pathname.startsWith("/play")) {
+  if (
+    pathname.startsWith("/home") ||
+    pathname.startsWith("/play") ||
+    pathname.startsWith("/tv-shows") ||
+    pathname.startsWith("/movies") ||
+    pathname.startsWith("/new-and-popular") ||
+    pathname.startsWith("/my-list") ||
+    pathname.startsWith("/browse-by-language")
+  ) {
     if (!hasAuthCookie) {
       return NextResponse.redirect(new URL("/sign-in", req.url));
     }
@@ -26,5 +34,14 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/home/:path*", "/play/:path*"],
+  matcher: [
+    "/",
+    "/home/:path*",
+    "/play/:path*",
+    "/tv-shows/:path*",
+    "/movies/:path*",
+    "/new-and-popular/:path*",
+    "/my-list/:path*",
+    "/browse-by-language/:path*",
+  ],
 };
