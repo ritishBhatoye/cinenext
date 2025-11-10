@@ -20,8 +20,8 @@ const Navbar = () => {
       title: "Movies",
     },
     {
-      id: "news-and-popular",
-      title: "News & Popular",
+      id: "new-and-popular",
+      title: "New & Popular",
     },
     {
       id: "my-list",
